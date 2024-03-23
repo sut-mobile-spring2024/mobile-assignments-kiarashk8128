@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FAFAFA"
+    tools:context=".MainActivity">
+
+    <!-- This is the display of the calculator -->
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/display_background"
+        android:textSize="32sp"
+        android:textColor="#000000"
+        android:gravity="end|center_vertical"
+        android:padding="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="148dp"
+        android:text="0"
+        android:drawablePadding="10dp"/>
+
+    <!-- Numeric buttons and operations will go here -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Row for operations like parentheses, clear, etc. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="%"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="/"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+
+
+            <!-- ... other buttons ... -->
+
+        </LinearLayout>
+
+        <!-- Row for each digit row -->
+        <!-- Example for number 7, 8, 9 and divide operation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+
+            <!-- ... other buttons for 8, 9, and divide ... -->
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+
+            <!-- ... other buttons for 8, 9, and divide ... -->
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="7"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="9"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+
+            <!-- ... other buttons for 8, 9, and divide ... -->
+
+        </LinearLayout>
+
+        <!-- Repeat the above LinearLayout block for rows with digits 4,5,6 and multiply, 1,2,3 and subtract, 0 and add -->
+
+        <!-- Row for zero and decimal point -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:background="@drawable/button_background_num"
+                android:textSize="20sp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="."
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+
+            <!-- Operation button for equals -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="="
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="()"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="C"
+                android:background="@drawable/button_background_opr"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

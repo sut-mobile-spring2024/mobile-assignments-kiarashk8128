@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#FAFAFA">
+
+
+    <!-- Vertical sequence of rectangles -->
+    <!-- First rectangle -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="163dp"/>
+
+    <!-- Second rectangle -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="163dp"
+        android:layout_marginBottom="32dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginBottom="32dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="163dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="32dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginBottom="32dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="163dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="32dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginBottom="32dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginLeft="163dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Spacer View for bottom padding -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>
+
