@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FAFAFA"
+    tools:context=".MainActivity">
+
+    <!-- This is the display of the calculator -->
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/display_background"
+        android:textSize="32sp"
+        android:textColor="#000000"
+        android:gravity="end|center_vertical"
+        android:padding="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="100dp"
+        android:text="0"
+        android:drawablePadding="10dp"/>
+
+    <!-- Operation buttons - Row 1 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/remainder"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/display"
+        android:layout_alignParentStart="true"
+        android:text="%"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sum"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/remainder"
+        android:layout_alignTop="@+id/remainder"
+        android:text="+"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/diff"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/sum"
+        android:layout_alignTop="@+id/sum"
+        android:text="-"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/multiply"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/diff"
+        android:layout_alignTop="@+id/diff"
+        android:text="*"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/division"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/multiply"
+        android:layout_alignTop="@+id/multiply"
+        android:text="/"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <!-- Numeric buttons - Row 2 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn1"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remainder"
+        android:layout_alignStart="@+id/remainder"
+        android:text="1"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn2"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn1"
+        android:layout_alignTop="@+id/btn1"
+        android:text="2"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn3"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn2"
+        android:layout_alignTop="@+id/btn2"
+        android:text="3"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn4"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn1"
+        android:layout_alignStart="@+id/btn1"
+        android:text="4"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn5"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn4"
+        android:layout_alignTop="@+id/btn4"
+        android:text="5"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn6"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn5"
+        android:layout_alignTop="@+id/btn5"
+        android:text="6"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn7"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn4"
+        android:layout_alignStart="@+id/btn4"
+        android:text="7"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn8"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn7"
+        android:layout_alignTop="@+id/btn7"
+        android:text="8"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn9"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn8"
+        android:layout_alignTop="@+id/btn8"
+        android:text="9"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+
+    <!-- The remaining buttons would be placed similarly, with each new row below the previous one -->
+    <!-- and each button to the end of the previous. You'll have to create the ids and positions -->
+
+    <!-- Zero Button - It spans two button widths -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn0"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn7"
+        android:layout_alignStart="@+id/btn1"
+        android:text="0"
+        android:background="@drawable/button_background_num"
+        android:textSize="20sp"/>
+
+    <!-- Decimal Button - Positioned to the right of Button 0 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/float1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn0"
+        android:layout_alignTop="@+id/btn0"
+        android:text="."
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <!-- Equal Button - Positioned to the right of Decimal Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/equal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/float1"
+        android:layout_alignTop="@+id/float1"
+        android:text="="
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <!-- Clear Button - Positioned to the right of Equal Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/equal"
+        android:layout_alignTop="@+id/equal"
+        android:text="C"
+        android:background="@drawable/button_background_opr"
+        android:textSize="20sp"/>
+
+    <!-- The above RelativeLayout assumes all buttons are the same width and height -->
+    <!-- For exact positioning as per the screenshot, the width and height can be adjusted -->
+    <!-- or use a GridLayout or ConstraintLayout for more control over the size and position of elements -->
+
+</RelativeLayout>
