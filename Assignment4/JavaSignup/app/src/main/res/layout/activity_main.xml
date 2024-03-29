@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+
+    <!-- "Welcome to Our Studio" text -->
+    <TextView
+        android:id="@+id/welcomeStudioText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to Our Studio 🎉"
+        android:textSize="24sp"
+        android:layout_marginTop="60dp"/>
+
+    <!-- "Please Signup for an Account" text -->
+    <TextView
+        android:id="@+id/signupPromptText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeStudioText"
+        android:layout_centerHorizontal="true"
+        android:text="Please Signup for an Account ☘️"
+        android:textSize="20sp"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Username input field -->
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signupPromptText"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/input_boarder"
+        android:padding="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Email input field -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/input_boarder"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="6dp"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Date of Birth input field -->
+    <EditText
+        android:id="@+id/dateofbirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:hint="Date of Birth: DD/MM/YYYY"
+        android:background="@drawable/input_boarder"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="6dp"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Gender RadioGroup -->
+    <RadioGroup
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateofbirth"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:layout_marginTop="26dp">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"/>
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"/>
+    </RadioGroup>
+
+    <!-- Password input field -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gender"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="@drawable/input_boarder"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="6dp"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Confirm Password input field -->
+    <EditText
+        android:id="@+id/confirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:background="@drawable/input_boarder"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="6dp"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Sign Up button -->
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmpassword"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Sign Up"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Cancel button -->
+    <Button
+        android:id="@+id/cancel_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_btn"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Cancel"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"/>
+
+    <!-- "If you already have an account, please" text -->
+    <TextView
+        android:id="@+id/alreadyHaveAccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cancel_btn"
+        android:layout_centerHorizontal="true"
+        android:text="If you already have an account, please"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="40dp"/>
+
+    <!-- Login link text -->
+    <TextView
+        android:id="@+id/signInLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alreadyHaveAccountText"
+        android:layout_centerHorizontal="true"
+        android:text="login"
+        android:textColor="#7fe3ec"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:onClick="onSignInClicked"/>
+</RelativeLayout>
