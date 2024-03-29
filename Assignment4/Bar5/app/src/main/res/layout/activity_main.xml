@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FAFAFA">
+
+    <View
+        android:id="@+id/firstRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="205dp"/>
+
+    <View
+        android:id="@+id/secondRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_below="@id/firstRectangle"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="205dp"/>
+    <View
+        android:id="@+id/thirdRectangle"
+        android:layout_width="match_parent"
+        android:layout_below="@id/secondRectangle"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="205dp"/>
+
+    <View
+        android:id="@+id/fourthRectangle"
+        android:layout_width="match_parent"
+
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_below="@id/thirdRectangle"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="205dp"/>
+    <View
+        android:id="@+id/fifthRectangle"
+        android:layout_width="match_parent"
+        android:layout_below="@id/fourthRectangle"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="205dp"/>
+
+    <View
+        android:id="@+id/sixthRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_below="@id/fifthRectangle"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="205dp"/>
+    <View
+        android:id="@+id/seventhRectangle"
+        android:layout_below="@id/sixthRectangle"
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="205dp"/>
+
+    <View
+        android:id="@+id/eighthRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:layout_below="@id/seventhRectangle"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="205dp"/>
+
+
+</RelativeLayout>
