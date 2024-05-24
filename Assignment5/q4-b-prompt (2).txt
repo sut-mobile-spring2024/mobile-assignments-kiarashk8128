@@ -1,0 +1,16 @@
+You are playing a game of tic-tac-toe on a 5x5 board. The current state of the board is:
+
+X | O | X |   |  
+----------------
+  | O |   |   |  
+----------------
+  |   | X |   |  
+----------------
+  |   |   |   |  
+----------------
+  |   |   |   |  
+
+It's your turn to make a move. You are playing as X.
+Note: The top row is the row 1 and then 2 and 3, etc. And also the top left column
+is column 1 and then 2 and 3, etc.
+Enter the row and column numbers where you want to place your X as your best next move (e.g., "1 2").
