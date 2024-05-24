@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/back"
+    android:gravity="center">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Our Studio 🎉"
+            android:textSize="24sp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="130dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please Signup for an Account ☘️"
+            android:textSize="20sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/input_boarder"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/input_boarder"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <EditText
+            android:id="@+id/dateofbirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth: DD/MM/YYYY"
+            android:background="@drawable/input_boarder"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <RadioGroup
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/input_boarder"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <EditText
+            android:id="@+id/confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:background="@drawable/input_boarder"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <Button
+            android:id="@+id/signup_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginBottom="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you already have an account, please "
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <TextView
+            android:id="@+id/signInLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="#1e81b0"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:onClick="onSignInClicked"/>
+    </TableRow>
+</TableLayout>
