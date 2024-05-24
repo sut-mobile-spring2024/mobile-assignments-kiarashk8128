@@ -10,3 +10,11 @@ It's your turn to make a move. You are playing as X.
 Note: The top row is the row 1 and then 2 and 3. And also the top left column
 is column 1 and then 2 and 3.
 Enter the row and column numbers where you want to place your X as your best next move (e.g., "1 2").
+
+Strategy of Computer:
+Win or Block: The computer first tries to win or block the player's winning
+ move by simulating the move and checking if it results in a win.
+Fill Own Line: If it can't win or block, the computer tries to fill its own row, column,
+ or diagonal where it has already placed one symbol and there is no symbol of the other player. 
+This is done by counting the number of computer symbols and ensuring no player symbols are present in the line.
+Random Move: If none of the above conditions are met, the computer makes a random move in an empty cell.
