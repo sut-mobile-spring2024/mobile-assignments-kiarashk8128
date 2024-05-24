@@ -78,6 +78,10 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
                 computerMove();
             }
         }
+
+        // Predict probable winner
+        String probableWinner = predictWinner();
+        Toast.makeText(this, "Probable winner: " + probableWinner, Toast.LENGTH_SHORT).show();
     }
 
     private boolean checkForWin() {
@@ -152,33 +156,23 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         }
 
         // Check if computer can win
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (field[i][j].equals("")) {
-                    field[i][j] = computerSymbol;
-                    if (checkWin(field)) {
-                        buttons[i][j].setText(computerSymbol);
-                        buttons[i][j].setTextColor(getResources().getColor(R.color.yellow));
-                        roundCount++;
-                        if (checkForWin()) {
-                            player2Wins();
-                        } else if (roundCount == 9) {
-                            draw();
-                        } else {
-                            player1Turn = !player1Turn;
-                        }
-                        return;
-                    }
-                    field[i][j] = "";
-                }
-            }
-        }
+        if (tryToWinOrBlock(field, computerSymbol)) return;
 
         // Block player's winning move
+        if (tryToWinOrBlock(field, playerSymbol)) return;
+
+        // Try to fill its own row, column, or diagonal
+        if (tryToFillOwnLine(field)) return;
+
+        // Make a random move
+        makeRandomMove(field);
+    }
+
+    private boolean tryToWinOrBlock(String[][] field, String symbol) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (field[i][j].equals("")) {
-                    field[i][j] = playerSymbol;
+                    field[i][j] = symbol;
                     if (checkWin(field)) {
                         buttons[i][j].setText(computerSymbol);
                         buttons[i][j].setTextColor(getResources().getColor(R.color.yellow));
@@ -190,14 +184,70 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
                         } else {
                             player1Turn = !player1Turn;
                         }
-                        return;
+                        return true;
                     }
                     field[i][j] = "";
                 }
             }
         }
+        return false;
+    }
 
-        // Make a random move
+    private boolean tryToFillOwnLine(String[][] field) {
+        // Check rows
+        for (int i = 0; i < 3; i++) {
+            if (checkAndFillLine(field, i, 0, 0, 1)) {
+                return true;
+            }
+        }
+        // Check columns
+        for (int i = 0; i < 3; i++) {
+            if (checkAndFillLine(field, 0, i, 1, 0)) {
+                return true;
+            }
+        }
+        // Check diagonals
+        if (checkAndFillLine(field, 0, 0, 1, 1)) {
+            return true;
+        }
+        if (checkAndFillLine(field, 0, 2, 1, -1)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkAndFillLine(String[][] field, int startX, int startY, int dx, int dy) {
+        int count = 0;
+        int emptyX = -1, emptyY = -1;
+        for (int i = 0; i < 3; i++) {
+            int x = startX + i * dx;
+            int y = startY + i * dy;
+            if (field[x][y].equals(computerSymbol)) {
+                count++;
+            } else if (field[x][y].equals("")) {
+                emptyX = x;
+                emptyY = y;
+            } else {
+                return false;
+            }
+        }
+        if (count == 1 && emptyX != -1) {
+            buttons[emptyX][emptyY].setText(computerSymbol);
+            buttons[emptyX][emptyY].setTextColor(getResources().getColor(R.color.yellow));
+            roundCount++;
+            if (checkForWin()) {
+                player2Wins();
+            } else if (roundCount == 9) {
+                draw();
+            } else {
+                player1Turn = !player1Turn;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void makeRandomMove(String[][] field) {
         List<int[]> emptyCells = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -239,5 +289,96 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         }
 
         return false;
+    }
+
+    // Minimax algorithm to predict probable winner
+    private String predictWinner() {
+        String[][] field = new String[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = buttons[i][j].getText().toString();
+            }
+        }
+
+        int score = minimax(field, 0, true);
+        if (score > 0) {
+            return computerSymbol;
+        } else if (score < 0) {
+            return playerSymbol;
+        } else {
+            return "Draw";
+        }
+    }
+
+    private int minimax(String[][] field, int depth, boolean isMaximizing) {
+        if (checkWin(field, computerSymbol)) {
+            return 10 - depth;
+        }
+        if (checkWin(field, playerSymbol)) {
+            return depth - 10;
+        }
+        if (isFull(field)) {
+            return 0;
+        }
+
+        if (isMaximizing) {
+            int bestScore = Integer.MIN_VALUE;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (field[i][j].equals("")) {
+                        field[i][j] = computerSymbol;
+                        int score = minimax(field, depth + 1, false);
+                        field[i][j] = "";
+                        bestScore = Math.max(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        } else {
+            int bestScore = Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (field[i][j].equals("")) {
+                        field[i][j] = playerSymbol;
+                        int score = minimax(field, depth + 1, true);
+                        field[i][j] = "";
+                        bestScore = Math.min(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        }
+    }
+
+    private boolean checkWin(String[][] field, String symbol) {
+        for (int i = 0; i < 3; i++) {
+            if (field[i][0].equals(symbol) && field[i][1].equals(symbol) && field[i][2].equals(symbol)) {
+                return true;
+            }
+            if (field[0][i].equals(symbol) && field[1][i].equals(symbol) && field[2][i].equals(symbol)) {
+                return true;
+            }
+        }
+
+        if (field[0][0].equals(symbol) && field[1][1].equals(symbol) && field[2][2].equals(symbol)) {
+            return true;
+        }
+        if (field[0][2].equals(symbol) && field[1][1].equals(symbol) && field[2][0].equals(symbol)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isFull(String[][] field) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (field[i][j].equals("")) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

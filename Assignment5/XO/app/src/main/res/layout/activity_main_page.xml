@@ -9,7 +9,6 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/exitButton"
             android:layout_width="wrap_content"
@@ -18,96 +17,115 @@
             android:layout_gravity="start"
             android:background="@drawable/btn"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="130dp"
+            android:layout_marginBottom="30dp"
             android:textSize="22sp" />
     </TableRow>
 
+    <!-- Box around Game Mode selection -->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose Game Mode"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/box_background"
+            android:padding="16dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Game Mode"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/gameModeGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/humanRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Human vs Human"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <RadioButton
+                    android:id="@+id/computerRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Human vs Computer"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+            </RadioGroup>
+        </LinearLayout>
+    </TableRow>
+
+    <!-- Box around Symbol selection -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/box_background"
+            android:padding="16dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Your Symbol"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/playerSymbolGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/xRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <RadioButton
+                    android:id="@+id/oRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="O"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:typeface="serif"
+                    android:layout_marginBottom="20dp"/>
+            </RadioGroup>
+        </LinearLayout>
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-
-        <RadioGroup
-            android:id="@+id/gameModeGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/humanRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Human vs Human" />
-
-            <RadioButton
-                android:id="@+id/computerRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Human vs Computer" />
-        </RadioGroup>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose Your Symbol"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <RadioGroup
-            android:id="@+id/playerSymbolGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/xRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X" />
-
-            <RadioButton
-                android:id="@+id/oRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="O"
-                android:layout_marginBottom="40dp"/>
-        </RadioGroup>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/startGameButton"
             android:layout_width="wrap_content"
@@ -117,7 +135,7 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="70dp"/>
+            android:layout_marginBottom="30dp"/>
     </TableRow>
 
 </TableLayout>
