@@ -1,6 +1,7 @@
 package com.example.xo;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,9 +17,12 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
     private Button[][] buttons = new Button[3][3];
     private boolean player1Turn = true;
     private int roundCount;
+    private boolean havePlayer2 = false;
     private boolean playWithComputer = false;
-    private String playerSymbol = "X";
+    private String player1Symbol = "X";
+    private String player2Symbol = "O";
     private String computerSymbol = "O";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +46,16 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String gameMode = extras.getString("gameMode");
-            playerSymbol = extras.getString("playerSymbol");
+            player1Symbol = extras.getString("playerSymbol");
             playWithComputer = "Human vs Computer".equals(gameMode);
-            computerSymbol = "X".equals(playerSymbol) ? "O" : "X";
+            if (playWithComputer) {
+                computerSymbol = "X".equals(player1Symbol) ? "O" : "X";
+                player2Symbol = "";
+            } else {
+                player2Symbol = "X".equals(player1Symbol) ? "O" : "X";
+                computerSymbol = "";
+                havePlayer2 = true;
+            }
         }
     }
 
@@ -55,11 +66,16 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         }
 
         if (player1Turn) {
-            ((Button) v).setText(playerSymbol);
+            ((Button) v).setText(player1Symbol);
             ((Button) v).setTextColor(getResources().getColor(R.color.pink));
         } else {
-            ((Button) v).setText(computerSymbol);
-            ((Button) v).setTextColor(getResources().getColor(R.color.yellow));
+            if (playWithComputer) {
+                ((Button) v).setText(computerSymbol);
+                ((Button) v).setTextColor(getResources().getColor(R.color.yellow));
+            } else {
+                ((Button) v).setText(player2Symbol);
+                ((Button) v).setTextColor(getResources().getColor(R.color.yellow));
+            }
         }
 
         roundCount++;
@@ -73,15 +89,19 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         } else if (roundCount == 9) {
             draw();
         } else {
-            player1Turn = !player1Turn;
-            if (playWithComputer && !player1Turn) {
-                computerMove();
+            if (havePlayer2){
+                player1Turn = !player1Turn;
+            }
+            else {// Predict for CPU move
+                player1Turn = !player1Turn;
+                predictAndToastWinner(false);
+                handler.postDelayed(this::computerMove, 4000); // Delay for CPU move
             }
         }
 
-        // Predict probable winner
-        String probableWinner = predictWinner();
-        Toast.makeText(this, "Probable winner: " + probableWinner, Toast.LENGTH_SHORT).show();
+        if (playWithComputer && player1Turn) {
+            predictAndToastWinner(true); // Predict for human move
+        }
     }
 
     private boolean checkForWin() {
@@ -121,12 +141,16 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
     }
 
     private void player1Wins() {
-        Toast.makeText(this, "Player " + playerSymbol + " wins!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Player " + player1Symbol + " wins!", Toast.LENGTH_LONG).show();
         clearBoard();
     }
 
     private void player2Wins() {
-        Toast.makeText(this, "Player " + computerSymbol + " wins!", Toast.LENGTH_LONG).show();
+        if (playWithComputer) {
+            Toast.makeText(this, "Player " + computerSymbol + " wins!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Player " + player2Symbol + " wins!", Toast.LENGTH_LONG).show();
+        }
         clearBoard();
     }
 
@@ -147,6 +171,7 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
     }
 
     private void computerMove() {
+
         String[][] field = new String[3][3];
 
         for (int i = 0; i < 3; i++) {
@@ -156,16 +181,26 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         }
 
         // Check if computer can win
-        if (tryToWinOrBlock(field, computerSymbol)) return;
+        if (tryToWinOrBlock(field, computerSymbol)){
+            predictAndToastWinner(true);
+            return;
+        }
 
         // Block player's winning move
-        if (tryToWinOrBlock(field, playerSymbol)) return;
+        if (tryToWinOrBlock(field, player1Symbol)){
+            predictAndToastWinner(true);
+            return;
+        }
 
         // Try to fill its own row, column, or diagonal
-        if (tryToFillOwnLine(field)) return;
+        if (tryToFillOwnLine(field)){
+            predictAndToastWinner(true);
+            return;
+        }
 
         // Make a random move
         makeRandomMove(field);
+        predictAndToastWinner(true);
     }
 
     private boolean tryToWinOrBlock(String[][] field, String symbol) {
@@ -173,7 +208,7 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
             for (int j = 0; j < 3; j++) {
                 if (field[i][j].equals("")) {
                     field[i][j] = symbol;
-                    if (checkWin(field)) {
+                    if (checkWin(field, symbol)) {
                         buttons[i][j].setText(computerSymbol);
                         buttons[i][j].setTextColor(getResources().getColor(R.color.yellow));
                         roundCount++;
@@ -182,7 +217,7 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
                         } else if (roundCount == 9) {
                             draw();
                         } else {
-                            player1Turn = !player1Turn;
+                            player1Turn = true;
                         }
                         return true;
                     }
@@ -240,7 +275,7 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
             } else if (roundCount == 9) {
                 draw();
             } else {
-                player1Turn = !player1Turn;
+                player1Turn = true;
             }
             return true;
         }
@@ -267,87 +302,7 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
         } else if (roundCount == 9) {
             draw();
         } else {
-            player1Turn = !player1Turn;
-        }
-    }
-
-    private boolean checkWin(String[][] field) {
-        for (int i = 0; i < 3; i++) {
-            if (field[i][0].equals(field[i][1]) && field[i][0].equals(field[i][2]) && !field[i][0].equals("")) {
-                return true;
-            }
-            if (field[0][i].equals(field[1][i]) && field[0][i].equals(field[2][i]) && !field[0][i].equals("")) {
-                return true;
-            }
-        }
-
-        if (field[0][0].equals(field[1][1]) && field[0][0].equals(field[2][2]) && !field[0][0].equals("")) {
-            return true;
-        }
-        if (field[0][2].equals(field[1][1]) && field[0][2].equals(field[2][0]) && !field[0][2].equals("")) {
-            return true;
-        }
-
-        return false;
-    }
-
-    // Minimax algorithm to predict probable winner
-    private String predictWinner() {
-        String[][] field = new String[3][3];
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                field[i][j] = buttons[i][j].getText().toString();
-            }
-        }
-
-        int score = minimax(field, 0, true);
-        if (score > 0) {
-            return computerSymbol;
-        } else if (score < 0) {
-            return playerSymbol;
-        } else {
-            return "Draw";
-        }
-    }
-
-    private int minimax(String[][] field, int depth, boolean isMaximizing) {
-        if (checkWin(field, computerSymbol)) {
-            return 10 - depth;
-        }
-        if (checkWin(field, playerSymbol)) {
-            return depth - 10;
-        }
-        if (isFull(field)) {
-            return 0;
-        }
-
-        if (isMaximizing) {
-            int bestScore = Integer.MIN_VALUE;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (field[i][j].equals("")) {
-                        field[i][j] = computerSymbol;
-                        int score = minimax(field, depth + 1, false);
-                        field[i][j] = "";
-                        bestScore = Math.max(score, bestScore);
-                    }
-                }
-            }
-            return bestScore;
-        } else {
-            int bestScore = Integer.MAX_VALUE;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (field[i][j].equals("")) {
-                        field[i][j] = playerSymbol;
-                        int score = minimax(field, depth + 1, true);
-                        field[i][j] = "";
-                        bestScore = Math.min(score, bestScore);
-                    }
-                }
-            }
-            return bestScore;
+            player1Turn = true;
         }
     }
 
@@ -380,5 +335,70 @@ public class XOActivity extends AppCompatActivity implements View.OnClickListene
             }
         }
         return true;
+    }
+
+    // Minimax algorithm to predict probable winner
+    private String predictWinner() {
+        String[][] field = new String[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = buttons[i][j].getText().toString();
+            }
+        }
+
+        int score = minimax(field, 0, !player1Turn); // Use current turn for prediction
+        if (score > 0) {
+            return computerSymbol;
+        } else if (score < 0) {
+            return player1Symbol;
+        } else {
+            return "Draw";
+        }
+    }
+
+    private int minimax(String[][] field, int depth, boolean isMaximizing) {
+        if (checkWin(field, computerSymbol)) {
+            return 10 - depth;
+        }
+        if (checkWin(field, player1Symbol)) {
+            return depth - 10;
+        }
+        if (isFull(field)) {
+            return 0;
+        }
+
+        if (isMaximizing) {
+            int bestScore = Integer.MIN_VALUE;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (field[i][j].equals("")) {
+                        field[i][j] = computerSymbol;
+                        int score = minimax(field, depth + 1, false);
+                        field[i][j] = "";
+                        bestScore = Math.max(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        } else {
+            int bestScore = Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (field[i][j].equals("")) {
+                        field[i][j] = player1Symbol;
+                        int score = minimax(field, depth + 1, true);
+                        field[i][j] = "";
+                        bestScore = Math.min(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        }
+    }
+
+    private void predictAndToastWinner(boolean isPlayerTurn) {
+        String probableWinner = predictWinner();
+        Toast.makeText(this, "Probable winner: " + probableWinner, Toast.LENGTH_SHORT).show();
     }
 }
